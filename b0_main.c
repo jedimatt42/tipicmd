@@ -86,7 +86,22 @@ void main()
   vdp_type = bk_detect_vdp();
   foreground = 15;
   background = 4;
-  bk_setupScreen(vdp_type == VDP_9918 ? 40 : 80, 24);
+  switch(vdp_type) {
+    case VDP_9918:
+      displayWidth = 40;
+      displayHeight = 24;
+      break;
+    case VDP_F18A:
+      displayWidth = 80;
+      displayHeight = 30;
+      break;
+    case VDP_9938:
+    case VDP_9958:
+      displayWidth = 80;
+      displayHeight = 26;
+      break;
+  }
+  bk_setupScreen(displayWidth, displayHeight);
   pal = bk_isPal();
 
   bk_loadDriveDSRs();
