@@ -33,6 +33,6 @@ void handleFg99() {
 
   bk_strcpy(fg99_msg+8, cart);
 
-  bk_setupScreen(0);
+  bk_setupScreen(0, 24);
   bk_fg99(fg99_msg, 0x0000);
 }

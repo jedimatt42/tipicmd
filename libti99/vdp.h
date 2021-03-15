@@ -207,9 +207,11 @@ void set_text80_color();
 // Use bgcolor and textcolor functions from conio to change colors.
 // Return: returns a value to be written to VDP_REG_MODE1 (and VDP_REG1_KSCAN_MIRROR if you use kscan())
 // The screen is blanked until you do this write, to allow you time to set it up
-int set_text80x30_color_raw();
+// height can be 30 for 30 row mode, or any other number will result in 24 row mode.
+int set_text80x30_color_raw(int height);
 // this version enables the screen and sets the KSCAN copy for you
 void set_text80x30_color();
+void set_text80x24_color();
 
 // set_text64_color - sets up simulated 64-column text mode in bitmap mode - 64x24
 // Inputs: none

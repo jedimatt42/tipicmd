@@ -30,7 +30,7 @@ void handleBar() {
     return;
   }
 
-  bk_setupScreen(displayWidth);
+  bk_setupScreen(displayWidth, displayHeight);
   if (nTitleLine) {
     bk_drawBar();
     gotoxy(0, 1);

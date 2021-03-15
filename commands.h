@@ -12,6 +12,7 @@ DEC_COMMAND(0, Exit);
 DEC_COMMAND(0, Fg99);
 DEC_COMMAND(0, Load);
 DEC_COMMAND(0, Width);
+DEC_COMMAND(0, Height);
 DEC_COMMAND(1, History);
 DEC_COMMAND(1, Readkey);
 DEC_COMMAND(3, Bar);

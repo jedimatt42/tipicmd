@@ -30,7 +30,7 @@ int isF18A() {
   return 0;
 }
 
-void setupScreen(int width) {
+void setupScreen(int width, int height) {
   lock_f18a();
   if (width == 0) {
     set_graphics(0);
@@ -54,17 +54,19 @@ void setupScreen(int width) {
   } else if (width == 80) {
     displayWidth = 80;
     if (vdp_type == VDP_F18A) {
-      set_text80x30_color();
-      displayHeight = 30;
+      if (height == 30) {
+        set_text80x30_color();
+      } else {
+        set_text80x24_color();
+      }
     } else {
       set_text80();
-      displayHeight = 26;
     }
   } else { // 40 is the only other allowed value.
     displayWidth = 40;
     set_text();
-    displayHeight = 24;
   }
+  displayHeight = height;
   bk_initTerminal();
 
   if (displayWidth == 80 && vdp_type == VDP_F18A) {

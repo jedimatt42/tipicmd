@@ -86,7 +86,7 @@ void main()
   vdp_type = bk_detect_vdp();
   foreground = 15;
   background = 4;
-  bk_setupScreen(vdp_type == VDP_9918 ? 40 : 80);
+  bk_setupScreen(vdp_type == VDP_9918 ? 40 : 80, 24);
   pal = bk_isPal();
 
   bk_loadDriveDSRs();

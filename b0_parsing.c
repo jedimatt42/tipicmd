@@ -48,6 +48,7 @@ int must_close_command(char* buffer) {
   if (MATCH(tok, str2ram("echo"))) return 0;
   if (MATCH(tok, str2ram("env"))) return 0;
   if (MATCH(tok, str2ram("if"))) return 0;
+  if (MATCH(tok, str2ram("height"))) return 0;
   if (MATCH(tok, str2ram("help"))) return 0;
   if (MATCH(tok, str2ram("history"))) return 0;
   if (MATCH(tok, str2ram("lvl2"))) return 0;
@@ -97,6 +98,7 @@ void handleCommand(char *buffer) {
   else COMMAND("fg99", handleFg99)
   else COMMAND("goto", bk_handleGoto)
   else COMMAND("if", bk_handleIf)
+  else COMMAND("height", bk_handleHeight)
   else COMMAND("help", bk_handleHelp)
   else COMMAND("history", bk_handleHistory)
   else COMMAND("load", handleLoad)
@@ -115,7 +117,7 @@ void handleCommand(char *buffer) {
   else COMMAND("type", bk_handleType)
   else COMMAND("unprotect", bk_handleUnprotect)
   else COMMAND("ver", titleScreen)
-  else COMMAND("width", handleWidth)
+  else COMMAND("width", bk_handleWidth)
   else COMMAND("xb", bk_handleXb)
   else if (tok[bk_strlen(tok)-1] == ':') {
     if (scripton) {

@@ -30,26 +30,39 @@ static void fast_scrn_scroll_80color() {
     return;
 }
 
+
+void set_text80x24_color(void) {
+    int x = set_text80x30_color_raw(24);
+    VDP_SET_REGISTER(VDP_REG_MODE1, x);
+    VDP_REG1_KSCAN_MIRROR = x;
+}
+
 void set_text80x30_color(void)
 {
-    int x = set_text80x30_color_raw();
+    int x = set_text80x30_color_raw(30);
     VDP_SET_REGISTER(VDP_REG_MODE1, x);
     VDP_REG1_KSCAN_MIRROR = x;
 }
 
 // requires F18A!!
-int set_text80x30_color_raw() {
+int set_text80x30_color_raw(int height) {
     // unlock the F18A (should be done before setting the mode)
     unlock_f18a();
     nTextRow = 80 * 29;
-    nTextEnd = (80 * 30) - 1;
+    nTextEnd = (80 * height) - 1;
     nTextPos = nTextRow;
-	nTextFlags = TEXT_FLAG_IS_F18A | TEXT_FLAG_HAS_ATTRIBUTES | TEXT_WIDTH_80 | TEXT_HEIGHT_30;
 
     int unblank = VDP_MODE1_16K | VDP_MODE1_UNBLANK | VDP_MODE1_TEXT | VDP_MODE1_INT;
     VDP_SET_REGISTER(VDP_REG_MODE0, VDP_MODE0_80COL);
     VDP_SET_REGISTER(VDP_REG_MODE1, VDP_MODE1_16K | VDP_MODE1_TEXT);
-    VDP_SET_REGISTER(0x31, 0x40); // set 30 row mode
+
+    if (height == 30) {
+        nTextFlags = TEXT_FLAG_IS_F18A | TEXT_FLAG_HAS_ATTRIBUTES | TEXT_WIDTH_80 | TEXT_HEIGHT_30;
+        VDP_SET_REGISTER(0x31, 0x40); // set 30 row mode
+    } else {
+        nTextFlags = TEXT_FLAG_IS_F18A | TEXT_FLAG_HAS_ATTRIBUTES | TEXT_WIDTH_80 | TEXT_HEIGHT_24;
+        VDP_SET_REGISTER(0x31, 0x00); // set 24 row mode
+    }
     VDP_SET_REGISTER(0x32, 0x02); // set Position-based tile attributes
     VDP_SET_REGISTER(VDP_REG_SIT, 0x00);
     gImage = 0x000; // to 0x0960

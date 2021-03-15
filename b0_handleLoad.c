@@ -35,7 +35,7 @@ void handleLoad() {
     }
   }
 
-  bk_setupScreen(0);
+  bk_setupScreen(0, 24);
 
   // TODO load ea-utils into >2000
 

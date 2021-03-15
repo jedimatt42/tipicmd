@@ -42,7 +42,7 @@ void handleExecutable(const char *ext)
         err = bk_runExecutable(ext);
 
         if (restoreDisplay != 0xFCFC) {
-            bk_setupScreen(displayWidth);
+            bk_setupScreen(displayWidth, displayHeight);
         }
 
         if (err)

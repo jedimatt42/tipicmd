@@ -1,5 +1,5 @@
 #include "banks.h"
-#define MYBANK BANK(0)
+#define MYBANK BANK(2)
 
 #include "commands.h"
 
@@ -20,12 +20,12 @@ void handleWidth() {
   int width = bk_atoi(tok);
 
   if (width == 80 && can80Column()) {
-    bk_setupScreen(80);
+    bk_setupScreen(80, displayHeight);
     return;
   }
 
   if (width == 40) {
-    bk_setupScreen(40);
+    bk_setupScreen(40, displayHeight);
     return;
   }
 

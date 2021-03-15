@@ -128,6 +128,6 @@ void handleXb() {
         fg99_addr = bk_atoi(xb_addr);
     }
 
-    bk_setupScreen(0);
+    bk_setupScreen(0, 24);
     bk_fg99(fg99_msg, fg99_addr);
 }
